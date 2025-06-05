@@ -38,11 +38,21 @@
 ;;;###autoload (autoload 'ruff-format-buffer "ruff-format" nil t)
 ;;;###autoload (autoload 'ruff-format-region "ruff-format" nil t)
 ;;;###autoload (autoload 'ruff-format-on-save-mode "ruff-format" nil t)
+
 (reformatter-define ruff-format
   :program ruff-format-command
   :args (list "format" "--stdin-filename" (or (buffer-file-name) input-file))
-  :lighter " RuffFmt"
+  :lighter "-format"
   :group 'ruff-format)
+
+;;;###autoload (autoload 'ruff-check-buffer "ruff-check" nil t)
+;;;###autoload (autoload 'ruff-check-region "ruff-check" nil t)
+;;;###autoload (autoload 'ruff-check-on-save-mode "ruff-check" nil t)
+(reformatter-define ruff-check
+    :program ruff-format-command
+    :args (list "check" "--stdin-filename" (or (buffer-file-name) input-file))
+    :lighter "-check"
+    :group 'ruff-format)
 
 (provide 'ruff-format)
 ;;; ruff-format.el ends here
