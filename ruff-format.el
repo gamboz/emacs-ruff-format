@@ -42,7 +42,7 @@
 (reformatter-define ruff-format
   :program ruff-format-command
   :args (list "format" "--stdin-filename" (or (buffer-file-name) input-file))
-  :lighter "-format"
+  :lighter " RuffFmt"
   :group 'ruff-format)
 
 ;;;###autoload (autoload 'ruff-check-buffer "ruff-check" nil t)
@@ -51,7 +51,7 @@
 (reformatter-define ruff-check
     :program ruff-format-command
     :args (list "check" "--stdin-filename" (or (buffer-file-name) input-file))
-    :lighter "-check"
+    :lighter " RuffChk"
     :group 'ruff-format)
 
 (provide 'ruff-format)
