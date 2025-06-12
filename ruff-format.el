@@ -50,7 +50,7 @@
 ;;;###autoload (autoload 'ruff-check-on-save-mode "ruff-check" nil t)
 (reformatter-define ruff-check
   :program "ruff"
-  :args (list "check" "--select" "I" "--fix" input-file)
+  :args (list "check" input-file)
   :lighter " RuffChk"
   :stdin nil
   :stdout nil
