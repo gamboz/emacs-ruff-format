@@ -49,10 +49,24 @@
 ;;;###autoload (autoload 'ruff-check-region "ruff-check" nil t)
 ;;;###autoload (autoload 'ruff-check-on-save-mode "ruff-check" nil t)
 (reformatter-define ruff-check
-    :program ruff-format-command
-    :args (list "check" "--stdin-filename" (or (buffer-file-name) input-file))
-    :lighter " RuffChk"
-    :group 'ruff-format)
+  :program "ruff"
+  :args (list "check" "--select" "I" "--fix" input-file)
+  :lighter " RuffChk"
+  :stdin nil
+  :stdout nil
+  :input-file (reformatter-temp-file)
+  :group 'ruff-format
+  )
+
+;; bind to C-S-F11 with something like
+;; (use-package python
+;;   :bind (:map python-mode-map
+;;               ([C-f11] . (lambda () (interactive)
+;;                            (ruff-format-buffer)))
+;;               ([S-C-f11] . (lambda () (interactive)
+;;                              (ruff-check-buffer)))
+;;               )
+
 
 (provide 'ruff-format)
 ;;; ruff-format.el ends here
